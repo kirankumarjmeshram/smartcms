@@ -1,5 +1,6 @@
-import { Button as ButtonPrimitive } from "@base-ui/react/button"
-import { cva } from "class-variance-authority";
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
@@ -40,18 +41,28 @@ const buttonVariants = cva(
   }
 )
 
-function Button({
-  className,
-  variant = "default",
-  size = "default",
-  ...props
-}) {
+const Button = React.forwardRef(function Button(
+  {
+    className,
+    variant = "default",
+    size = "default",
+    asChild = false,
+    type = "button",
+    ...props
+  },
+  ref
+) {
+  const Comp = asChild ? Slot : "button"
+
   return (
-    <ButtonPrimitive
+    <Comp
+      ref={ref}
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props} />
-  );
-}
+      className={cn(buttonVariants({ variant, size }), className)}
+      {...(!asChild ? { type } : {})}
+      {...props}
+    />
+  )
+})
 
 export { Button, buttonVariants }

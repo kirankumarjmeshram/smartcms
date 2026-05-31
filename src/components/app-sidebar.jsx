@@ -1,27 +1,92 @@
-import {Inbox} from "lucide-react"
+import { Home, Inbox, NotebookPen, Pencil, Search, User } from "lucide-react"
+
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
-  SidebarHeader,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-const basicMenuItems = [
-  {title: "Blogs", icon:Inbox, url:'/blogs'},
-  {title: "Draft", icon:Pencil , url:'/blogs'}
+// Menu items.
+const items = [
+  {
+    title: "Home",
+    url: "/",
+    icon: Home,
+  },
+  {
+    title: "Blogs",
+    url: "/blogs",
+    icon: Inbox,
+  },
+  {
+    title: "Draft",
+    url: "/draft",
+    icon: Pencil,
+  },
+  {
+    title: "Search",
+    url: "/search",
+    icon: Search,
+  },
+]
+
+const adminItems = [
+  {
+    title: "All Posts",
+    url: "/posts",
+    icon: NotebookPen,
+  },
+  {
+    title: "All Users",
+    url: "/users",
+    icon: User,
+  },
 ]
 
 export function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarHeader />
       <SidebarContent>
-        <SidebarGroup />
-        MENU 1
-        <SidebarGroup />
+        <SidebarGroup>
+          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {items.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Admin</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {adminItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter />
     </Sidebar>
   )
 }
