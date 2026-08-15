@@ -46,7 +46,7 @@ export default function Landing() {
               Ready to Transform your Content Journey?
             </h4>
             <p className="text-sm text-gray-400">
-              Join thousands of content creators like you who chose GeekCMS
+              Join thousands of content creators like you who chose SmartCMS
             </p>
             <div className="flex gap-2">
               <input className="bg-zinc-800 focus:outline-none rounded px-2 py-[7px] text-sm text-gray-400" type="text" placeholder="Enter your email" />
